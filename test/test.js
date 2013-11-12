@@ -1,4 +1,3 @@
-
 function describe(msg, fn) {
   console.group(msg);
   fn();
@@ -18,6 +17,6 @@ function assert(ok, msg) {
   if (!ok) throw (msg || "fails");
 }
 
-assert.equal = function (value, expected) {
-  assert(value === expected, value +" != "+ expected);
+assert.equal = function(value, expected) {
+  assert(value === expected, value + " != " + expected);
 };

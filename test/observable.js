@@ -1,4 +1,3 @@
-
 describe("Observable", function() {
 
   var el = $.observable({}),
@@ -30,7 +29,9 @@ describe("Observable", function() {
       count++;
     })
 
-    el.trigger("b").trigger("c").trigger("d", true);
+    el.trigger("b")
+      .trigger("c")
+      .trigger("d", true);
 
   })
 
@@ -43,7 +44,8 @@ describe("Observable", function() {
       count++;
     })
 
-    el.trigger("g").trigger("g");
+    el.trigger("g")
+      .trigger("g");
   })
 
 
@@ -56,7 +58,11 @@ describe("Observable", function() {
       count++;
     }
 
-    el.on("r", r).on("s", r).off("s", r).trigger("r").trigger("s");
+    el.on("r", r)
+      .on("s", r)
+      .off("s", r)
+      .trigger("r")
+      .trigger("s");
 
   })
 
@@ -68,7 +74,13 @@ describe("Observable", function() {
       counter++;
     }
 
-    el.on("a1 b1", fn).on("c1", fn).off("a1 b1").off("c1").trigger("a1").trigger("b1").trigger("c1");
+    el.on("a1 b1", fn)
+      .on("c1", fn)
+      .off("a1 b1")
+      .off("c1")
+      .trigger("a1")
+      .trigger("b1")
+      .trigger("c1");
 
     assert.equal(counter, 0);
 

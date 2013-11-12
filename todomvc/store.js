@@ -1,4 +1,3 @@
-
 function DB(key) {
   var store = window.localStorage;
 

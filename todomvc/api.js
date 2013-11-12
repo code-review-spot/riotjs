@@ -1,4 +1,3 @@
-
 /* The model */
 
 function Todo(db) {
@@ -9,7 +8,11 @@ function Todo(db) {
     items = db.get();
 
   self.add = function(name) {
-    var item = { id: "_" + ("" + Math.random()).slice(2), name: name }
+    var item = {
+      id: "_" + ("" + Math.random())
+        .slice(2),
+      name: name
+    }
     items[item.id] = item;
     self.trigger("add", item);
   }

@@ -1,9 +1,9 @@
-
 /*
   Riot.js 0.9.4 | moot.it/riotjs | @license MIT
   (c) 2013 Tero Piirainen, Moot Inc and other contributors.
  */
-(function(top) { "use strict";
+(function(top) {
+  "use strict";
 
   var $ = top.$ = top.$ || {};
 
@@ -27,7 +27,8 @@
 
         for (var i = 0, len = events.length, type; i < len; i++) {
           type = events[i];
-          (callbacks[type] = callbacks[type] || []).push(fn);
+          (callbacks[type] = callbacks[type] || [])
+            .push(fn);
           if (len > 1) fn.typed = true;
         }
       }
@@ -41,13 +42,19 @@
         type = events[j];
 
         // remove single type
-        if (!fn) { callbacks[type] = []; continue; }
+        if (!fn) {
+          callbacks[type] = [];
+          continue;
+        }
 
         var fns = callbacks[type] || [],
           pos = -1;
 
         for (var i = 0, len = fns.length; i < len; i++) {
-          if (fns[i] === fn || fns[i].listener === fn) { pos = i; break; }
+          if (fns[i] === fn || fns[i].listener === fn) {
+            pos = i;
+            break;
+          }
         }
 
         if (pos >= 0) fns.splice(pos, 1);
@@ -107,7 +114,9 @@
   }
 
   on("load", function() {
-    top.setTimeout(function() { page_popped || pop(); }, 1);
+    top.setTimeout(function() {
+      page_popped || pop();
+    }, 1);
   });
 
   on("popstate", function(e) {
@@ -122,7 +131,7 @@
     if (isFunction(to)) {
       fn.on("pop", to);
 
-    // fire
+      // fire
     } else if (to != top.location.hash) {
       if (top.history.pushState) top.history.pushState("", "", to);
       pop(to);

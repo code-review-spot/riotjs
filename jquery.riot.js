@@ -30,11 +30,11 @@
             fn.apply(obj, args);
           });
 
-        // trigger
+          // trigger
         } else if (i === 2) {
           $el.trigger(names, slice.call(arguments, 1));
 
-        // off
+          // off
         } else {
           $el.off(names);
         }
@@ -54,12 +54,15 @@
   var page_popped;
 
   $win.on("load", function(e) {
-    top.setTimeout(function() { page_popped || $win.trigger("popstate"); }, 1);
+    top.setTimeout(function() {
+      page_popped || $win.trigger("popstate");
+    }, 1);
 
-  }).on("popstate", function(e) {
-    if (!page_popped) page_popped = true;
+  })
+    .on("popstate", function(e) {
+      if (!page_popped) page_popped = true;
 
-  });
+    });
 
   // Change the browser URL or listen to changes on the URL
   $.route = function(to) {
@@ -70,7 +73,7 @@
         to(hash || top.location.hash);
       });
 
-    // fire
+      // fire
     } else if (to != top.location.hash) {
       if (top.history.pushState) top.history.pushState("", "", to);
       $win.trigger("popstate", [to]);

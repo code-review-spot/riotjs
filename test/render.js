@@ -1,15 +1,21 @@
-
 describe("$.render", function() {
 
   it("Single token", function() {
     assert.equal($.render("x"), "x");
     assert.equal($.render("x", {}), "x");
-    assert.equal($.render("{x}", { x: "x" }), "x");
-    assert.equal($.render("{x}", { x: "z" }), "z");
+    assert.equal($.render("{x}", {
+      x: "x"
+    }), "x");
+    assert.equal($.render("{x}", {
+      x: "z"
+    }), "z");
   });
 
   it("Multiple tokens", function() {
-    assert($.render("{x}{y}", { x: "x", y: "y" }) == "xy");
+    assert($.render("{x}{y}", {
+      x: "x",
+      y: "y"
+    }) == "xy");
   });
 
   it("Single quotes", function() {
@@ -18,17 +24,33 @@ describe("$.render", function() {
   });
 
   it("Empty value", function() {
-    assert.equal($.render("{x}", { x: undefined }), "");
-    assert.equal($.render("{x}", { x: null }), "");
-    assert.equal($.render("{x}", { x: false }), "false");
-    assert.equal($.render("{x}", { x: 0 }), "0");
+    assert.equal($.render("{x}", {
+      x: undefined
+    }), "");
+    assert.equal($.render("{x}", {
+      x: null
+    }), "");
+    assert.equal($.render("{x}", {
+      x: false
+    }), "false");
+    assert.equal($.render("{x}", {
+      x: 0
+    }), "0");
   });
 
   it("With spaces", function() {
-    assert.equal($.render("{ x }", { x: 'x' }), "x");
-    assert.equal($.render("{x }", { x: 'x' }), "x");
-    assert.equal($.render("{ x}", { x: 'x' }), "x");
-    assert.equal($.render("{  x  }", { x: 'x' }), "x");
+    assert.equal($.render("{ x }", {
+      x: 'x'
+    }), "x");
+    assert.equal($.render("{x }", {
+      x: 'x'
+    }), "x");
+    assert.equal($.render("{ x}", {
+      x: 'x'
+    }), "x");
+    assert.equal($.render("{  x  }", {
+      x: 'x'
+    }), "x");
   });
 
   it("Empty template", function() {
@@ -36,13 +58,22 @@ describe("$.render", function() {
   })
 
   it("Nearby brackets", function() {
-    assert.equal($.render("{{x}", { x: 'x' }), "{x");
-    assert.equal($.render("{x}}", { x: 'x' }), "x}");
-    assert.equal($.render("{{x}}", { x: 'x' }), "{x}");
+    assert.equal($.render("{{x}", {
+      x: 'x'
+    }), "{x");
+    assert.equal($.render("{x}}", {
+      x: 'x'
+    }), "x}");
+    assert.equal($.render("{{x}}", {
+      x: 'x'
+    }), "{x}");
   });
 
   it("<template> tag", function() {
-    if ($.trim) assert($.trim($.render($("#test1").html(), {x: 'x'})) == "x");
+    if ($.trim) assert($.trim($.render($("#test1")
+      .html(), {
+        x: 'x'
+      })) == "x");
   })
 
   it("Line breaks", function() {
